@@ -18,7 +18,8 @@ GENIE_LIBS  = $(shell $(GENIE)/src/scripts/setup/genie-config --libs)
 # first, and each stage must fully resolved before the next library
 LIBRARIES  := $(LIBRARIES) $(CERN_LIBRARIES) $(GENIE_LIBS)
 
-TGT_BASE =  gevgen          \
+TGT_BASE =  gdebug	    \
+	    gevgen          \
             gevgen_hadron   \
             gevdump         \
             gevpick         \
@@ -82,6 +83,13 @@ all: $(TGT)
 
 %.o : %.cxx
 	$(CXX) $(CXXFLAGS) -MMD -MP -c $(CPP_INCLUDES) $< -o $@
+
+
+# a simple test module for algorithms
+#
+$(GENIE_BIN_PATH)/gdebug: gdebug_xsec.o $(call find_libs,gdebug_xsec)
+	@echo "** Building gdebug"
+	$(LD) $(LDFLAGS) gdebub_xsec.o $(LIBRARIES) -o $(GENIE_BIN_PATH)/gdebug_xsec
 
 
 # a simple/generic gevgen event generation app
