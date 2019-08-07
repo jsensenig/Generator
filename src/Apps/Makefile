@@ -89,7 +89,7 @@ all: $(TGT)
 #
 $(GENIE_BIN_PATH)/gdebug: gdebug_xsec.o $(call find_libs,gdebug_xsec)
 	@echo "** Building gdebug"
-	$(LD) $(LDFLAGS) gdebub_xsec.o $(LIBRARIES) -o $(GENIE_BIN_PATH)/gdebug_xsec
+	$(LD) $(LDFLAGS) gdebug_xsec.o $(LIBRARIES) -o $(GENIE_BIN_PATH)/gdebug_xsec
 
 
 # a simple/generic gevgen event generation app
