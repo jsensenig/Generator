@@ -157,7 +157,9 @@ double COHXSecAR::IntegratePhoton( const XSecAlgorithmI * model, const Interacti
   // Check this
   double Enu      = init_state.ProbeE(kRfLab);
   double Egamma_min  = 0. ; 
-  double Egamma_max = Enu;
+  // FIXME add in cut on max neutrino energy
+  //double Egamma_max = Enu;
+  double Egamma_max = 1.; //max is neutrino energy
   
   // LOG("COHXSecAR", pINFO)
   //      << "Lepton energy integration range = [" << Elep_min << ", " << Elep_max << "]";

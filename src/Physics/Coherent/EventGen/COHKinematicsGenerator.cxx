@@ -657,7 +657,9 @@ void COHKinematicsGenerator::CalculateKin_Gamma(GHepRecord * evrec) const
   //TODO: check that these are the appropriate limits for theta_l and theta_g
   //Photon energy
   const double E_g_min = kASmallNum; //min is 0
-  const double E_g_max = Ev; //max is neutrino energy
+  // FIXME add in cut on max neutrino energy
+  //const double E_g_max = Ev; //max is neutrino energy
+  const double E_g_max = 1.; //max neutrino energy cut
 
   const double theta_l_max = kPi; 
   const double theta_l_min = 0.;
@@ -783,6 +785,7 @@ void COHKinematicsGenerator::CalculateKin_Gamma(GHepRecord * evrec) const
       interaction->ResetBit(kISkipProcessChk);
       interaction->ResetBit(kISkipKinematicChk);
 
+      std::cout << "Event accepted" << std::endl;
       return;
     }//if accept
     
@@ -1171,17 +1174,23 @@ double COHKinematicsGenerator::MaxXSec_Gamma(const Interaction * in) const
   //for COH gamma they are Eg, theta_l theta_gamma, phi_gamma 
   //then set variables and get min
   const double min_eg = 0.;
-  const double max_eg = Ev ; 
+  // FIXME add in cut on max neutrino energy
+  //const double max_eg = Ev ; 
+  const double max_eg = 1.; //max is neutrino energy
   const unsigned int n_eg = 100;
   const double d_eg = (max_eg - min_eg) / double(n_eg - 1);
 
   const double min_thetal = kASmallNum;
+  // FIXME change the limits to be consistent with rest of xsecs
   const double max_thetal = kPi / 4.0; //not sure why this is the max
+  //const double max_thetal = kPi; //not sure why this is the max
   const unsigned int n_thetal = 10; //also just assuming this is an appropriate number of intervals
   const double d_thetal = (max_thetal - min_thetal) / double(n_thetal - 1);
 
   const double min_thetag = kASmallNum; 
+  // FIXME change the limits to be consistent with rest of xsecs
   const double max_thetag = kPi / 2.0;//also not sure why this is the max
+  //const double max_thetag = kPi;//also not sure why this is the max
   const unsigned int n_thetag = 10;
   const double d_thetag = (max_thetag - min_thetag) / double(n_thetag - 1);
 
