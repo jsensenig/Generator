@@ -158,7 +158,7 @@ double COHXSecAR::IntegratePhoton( const XSecAlgorithmI * model, const Interacti
   double Enu      = init_state.ProbeE(kRfLab);
   double Egamma_min  = 0. ; 
   // FIXME add in cut on max neutrino energy
-  //double Egamma_max = Enu;
+  // double Egamma_max = Enu;
   double Egamma_max = 1.; //max is neutrino energy
   
   // LOG("COHXSecAR", pINFO)
